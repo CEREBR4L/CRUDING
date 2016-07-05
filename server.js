@@ -48,6 +48,19 @@ mongoClient.connect(url, function(err, db){
     			console.log("No docs found with the given criteria :(");
     		}
     	});
+    	//finding using DB cursor?
+    	var cursor = collection.find({name: 'modulus user'});
+    	cursor.sort({age: -1});
+    	cursor.limit(10);
+    	cursor.skip(0);
+    	cursor.each(function(err, doc){
+    		if(err){
+    			console.log("Error finding item(s): ", err);
+    		}
+    		else{
+    			console.log('Fetched: ', doc);
+    		}
+    	});
 
 	}
 });
